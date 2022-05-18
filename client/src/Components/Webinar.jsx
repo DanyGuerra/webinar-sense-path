@@ -37,6 +37,18 @@ const WebinarWrapper = styled.main`
       width: 80%;
     }
   }
+
+  @media (max-width: 992px) {
+    padding: 10px 10px;
+    section {
+      width: 100%;
+      flex-direction: column;
+
+      video {
+        width: 90%;
+      }
+    }
+  }
 `;
 
 const ChatWrapper = styled.div`
@@ -60,19 +72,6 @@ const ChatWrapper = styled.div`
     }
   }
   .box-messages {
-    ::-webkit-scrollbar {
-      width: 0.5em;
-    }
-
-    ::-webkit-scrollbar-track {
-      background-color: #e5e5e5;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #c4c4c4;
-      border-radius: 10px;
-    }
-
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -139,6 +138,7 @@ const ChatWrapper = styled.div`
       font-family: "Sen";
       font-weight: 700;
       font-size: 16px;
+      padding: 10px;
     }
     button {
       margin: 0;
@@ -147,6 +147,13 @@ const ChatWrapper = styled.div`
       font-size: 16px;
       height: 50px;
     }
+  }
+
+  @media (max-width: 992px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 80%;
   }
 `;
 

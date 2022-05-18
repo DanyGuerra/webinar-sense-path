@@ -16,6 +16,30 @@ const GlobalStyle = createGlobalStyle`
 
 
   }
+
+
+  ::-webkit-scrollbar {
+      width: 0.7em;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #e5e5e5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c4c4c4;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+
+
   *{
     box-sizing: border-box;
   }
