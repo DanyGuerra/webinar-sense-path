@@ -1,9 +1,7 @@
-# Template React App with Express Server
+# Webinar Sense Path
 
 ## In root directory run
 
 ```
 npm run build && npm start
 ```
-
-The aplication is running in http://localhost:5000

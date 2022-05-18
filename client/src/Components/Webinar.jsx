@@ -9,87 +9,121 @@ import {
   onSnapshot,
   where,
 } from "firebase/firestore";
+import logo from "../utils/logo-sensepath.svg";
 
-const WebinarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #ffffff;
-  width: 100%;
-  height: 100vh;
-  padding: 0 50px;
-  gap: 5%;
-`;
-
-const ChatWrapper = styled.div`
-  width: 25%;
-  height: 600px;
+const WebinarWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  justify-content: flex-start;
+  width: 100%;
+  height: 100vh;
+  padding: 30px 30px;
+  margin: 0;
+  gap: 5%;
+  background: linear-gradient(
+    113.09deg,
+    rgba(0, 92, 245, 0.1) 0%,
+    rgba(255, 97, 115, 0.1) 100.32%
+  );
 
-  .content {
-    text-align: center;
+  section {
     width: 90%;
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    video {
+      width: 80%;
+    }
+  }
+`;
 
-    .box-messages {
-      height: 70%;
-      overflow-y: scroll;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      gap: 30px;
-      padding: 20px 0;
-
-      .item {
-        padding: 5px;
-        border: 1px solid black;
-        border-radius: 10px;
-        position: relative;
-      }
-      .item.mine {
-        align-self: flex-end;
-        background-color: black;
-        color: white;
-      }
-      .name {
-        color: black;
-        position: absolute;
-        top: -15px;
-        left: 0;
-      }
-      .second {
-        color: black;
-        position: absolute;
-        bottom: -15px;
-        right: 0;
+const ChatWrapper = styled.div`
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  .title {
+    text-align: center;
+    h2 {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: #005cf5;
+      margin: 0;
+      bold {
+        font-weight: 800;
       }
     }
-    form {
-      height: 30%;
-      width: 100%;
+  }
+  .box-messages {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    padding: 20px 10px;
+    gap: 20px;
+    .item {
+      max-width: 60%;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
-      gap: 5%;
-      textarea {
-        height: 40%;
-        resize: none;
+      justify-content: center;
+      align-items: flex-start;
+      color: white;
+
+      .name,
+      .second {
+        color: #005cf5;
       }
-      button {
-        height: 30%;
-        :hover {
-          cursor: pointer;
+
+      .message-content {
+        display: flex;
+        flex-direction: column;
+        .message {
+          background: #005cf5;
+          border-radius: 10px;
+          padding: 5px 10px;
+        }
+        .second {
+          align-self: flex-end;
         }
       }
+    }
+    .item.mine {
+      max-width: 70%;
+      align-self: flex-end;
+      color: white;
+
+      .message {
+        background: #ff6173;
+      }
+
+      .name,
+      .second {
+        color: #ff6173;
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+
+    textarea {
+      width: 100%;
+      resize: none;
+      height: 100px;
+    }
+    button {
+      margin: 0;
     }
   }
 `;
@@ -183,45 +217,67 @@ const Webinar = ({ actualUser, actualMail }) => {
 
   return (
     <WebinarWrapper>
-      <video
-        ref={video}
-        id="video"
-        width="100%"
-        no-controls="true"
-        muted
-        autoPlay={"autoPlay"}
-        onChange={handleVideoPlay}
-      >
-        <source
-          src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
-          type="video/ogg"
-        />
-      </video>
-      <ChatWrapper>
-        <div className="content">
-          <h3>Deja tu comentario {actualUser}</h3>
-          <section className="box-messages">
+      <img src={logo} alt="Sense Path logo" width="252px" />
+      <section>
+        <video
+          ref={video}
+          id="video"
+          width="100%"
+          no-controls="true"
+          muted
+          autoPlay={"autoPlay"}
+          onChange={handleVideoPlay}
+        >
+          <source
+            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
+            type="video/ogg"
+          />
+        </video>
+        <ChatWrapper>
+          <div className="title">
+            <h2>INTRODUCCIÓN A LA</h2>
+            <h2>
+              <b>EVALUACIÓN SENSORIAL</b>
+            </h2>
+
+            <h2>CHARLA EN VIVO</h2>
+          </div>
+
+          <div className="title">
+            <h2>
+              <b>PATRICIA FUENTES</b>
+            </h2>
+
+            <h2>Fundadora de Sense Path</h2>
+          </div>
+          <div className="box-messages">
             {messages.map((item, i) => (
               <div
                 key={i}
                 className={`${item.user === actualUser ? "item mine" : "item"}`}
               >
                 <small className="name">{item.user}</small>
-                <div>{item.message}</div>
-                <small className="second">
-                  {fmtMSS(Math.trunc(item.videoTime))}
-                </small>
+                <div className="message-content">
+                  <div className="message">{item.message}</div>
+                  <small className="second">
+                    {fmtMSS(Math.trunc(item.videoTime))}
+                  </small>
+                </div>
               </div>
             ))}
-          </section>
+          </div>
           <form>
-            <textarea onChange={messageChange} ref={areaComment}></textarea>
+            <textarea
+              onChange={messageChange}
+              ref={areaComment}
+              placeholder="Deja tu mensaje"
+            ></textarea>
             <button type="submit" onClick={handleSubmit} ref={buttonSend}>
               Enviar
             </button>
           </form>
-        </div>
-      </ChatWrapper>
+        </ChatWrapper>
+      </section>
     </WebinarWrapper>
   );
 };

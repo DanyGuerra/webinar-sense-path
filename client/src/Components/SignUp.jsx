@@ -78,7 +78,21 @@ const SignUp = ({ setActualUser, setActualMail }) => {
         whatsapp: inputs[2].value,
         empresa: inputs[3].value,
       });
-      // sendUserToSpread();
+
+      await fetch("/", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          username: inputs[0].value,
+          email: inputs[1].value,
+          whatsapp: inputs[2].value,
+          empresa: inputs[3].value,
+        }),
+      });
+
       setActualUser(inputs[0].value);
       setActualMail(inputs[1].value);
       buttonSignUp.current.disabled = false;
@@ -162,32 +176,32 @@ const SignUp = ({ setActualUser, setActualMail }) => {
 
   return (
     <>
-      <div class="mancha hidden-mobile show-desktop">
+      <div className="mancha hidden-mobile show-desktop">
         <img src={mancha} alt="Logo" />
       </div>
 
       <main>
-        <section class="main-section">
-          <div class="left-message">
-            <div class="logo-header show-desktop hidden-mobile">
+        <section className="main-section">
+          <div className="left-message">
+            <div className="logo-header show-desktop hidden-mobile">
               <img src={logo} alt="Sense Path logo" width="252px" />
             </div>
             <h1>
               INTRODUCCIÓN A LA <b>EVALUACIÓN SENSORIAL</b> EBOOK GRATUITO
             </h1>
 
-            <p class="show-desktop hidden-mobile">
+            <p className="show-desktop hidden-mobile">
               Regístrate para descargar un exclusivo Ebook sobre como la
               evaluación sensorial puede ayudar a tu producto. Descubre los
               atributos personales, lo que opinan tus clientes o futuros
               compradores, como diferenciarte de tu compentencia y mucho más.{" "}
             </p>
-            <p class="hidden-desktop show-mobile">
+            <p className="hidden-desktop show-mobile">
               Regístrate para descargar un exclusivo Ebook sobre como la
               evaluación sensorial puede ayudar a tu producto.
             </p>
           </div>
-          <div class="formulario">
+          <div className="formulario">
             <form action="" method="post" id="form">
               {inputs.map((input, index) => (
                 <div
@@ -222,10 +236,10 @@ const SignUp = ({ setActualUser, setActualMail }) => {
               </button>
             </form>
           </div>
-          <div class="logo-main hidden-desktop">
+          <div className="logo-main hidden-desktop">
             <img src={logo} alt="Sense Path logo" width="252px" />
           </div>
-          <p class="hidden-desktop show-mobile">
+          <p className="hidden-desktop show-mobile">
             Descubre los atributos personales, lo que opinan tus clientes o
             futuros compradores, como diferenciarte de tu compentencia y mucho
             más.{" "}
@@ -233,19 +247,19 @@ const SignUp = ({ setActualUser, setActualMail }) => {
         </section>
       </main>
       <footer>
-        <div class="banner">
-          <div class="banner-text">
+        <div className="banner">
+          <div className="banner-text">
             <h1>
               ESTRATEGÍA SENSORIAL APLICADA A TU MARCA{" "}
               <b>SOMOS LA EMPRESA MEXICANA</b> DE MÁS ALTO EXPERTISE SENSORIAL
             </h1>
             <a href="https://www.sense-path.com/#topFooter" target="_blank">
-              <button class="secondary-button">CONTÁCTANOS</button>
+              <button className="secondary-button">CONTÁCTANOS</button>
             </a>
           </div>
-          <img class="show-desktop hidden-mobile" src={expertise} alt="" />
+          <img className="show-desktop hidden-mobile" src={expertise} alt="" />
         </div>
-        <div class="aviso-privacidad">
+        <div className="aviso-privacidad">
           <a
             href="https://www.sense-path.com/SP-AvisoPrivacidad.pdf"
             target="_blank"
