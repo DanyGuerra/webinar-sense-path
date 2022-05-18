@@ -5,11 +5,12 @@ import {
   addDoc,
   collection,
   query,
-  orderBy,
   onSnapshot,
   where,
+  orderBy,
 } from "firebase/firestore";
 import logo from "../utils/logo-sensepath.svg";
+import Messages from "./Messages";
 
 const WebinarWrapper = styled.main`
   display: flex;
@@ -17,7 +18,6 @@ const WebinarWrapper = styled.main`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 100vh;
   padding: 30px 30px;
   margin: 0;
   gap: 5%;
@@ -41,7 +41,7 @@ const WebinarWrapper = styled.main`
 
 const ChatWrapper = styled.div`
   display: flex;
-  width: 30%;
+  width: 25%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -60,17 +60,30 @@ const ChatWrapper = styled.div`
     }
   }
   .box-messages {
+    ::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #e5e5e5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c4c4c4;
+      border-radius: 10px;
+    }
+
     display: flex;
     flex-direction: column;
     background-color: white;
     width: 100%;
-    height: 300px;
-    overflow-y: scroll;
-    scroll-behavior: auto;
+    height: 500px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
     padding: 20px 10px;
     gap: 20px;
     .item {
-      max-width: 60%;
+      max-width: 80%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -96,10 +109,11 @@ const ChatWrapper = styled.div`
       }
     }
     .item.mine {
-      max-width: 70%;
       align-self: flex-end;
       color: white;
-
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       .message {
         background: #ff6173;
       }
@@ -121,9 +135,17 @@ const ChatWrapper = styled.div`
       width: 100%;
       resize: none;
       height: 100px;
+      font-style: normal;
+      font-family: "Sen";
+      font-weight: 700;
+      font-size: 16px;
     }
     button {
       margin: 0;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      height: 50px;
     }
   }
 `;
@@ -147,7 +169,6 @@ const Webinar = ({ actualUser, actualMail }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("hi");
       setCurrentSecond(Number(video.current.currentTime.toFixed(2)));
     }, 1000);
 
@@ -160,7 +181,8 @@ const Webinar = ({ actualUser, actualMail }) => {
     const getMessages = async () => {
       const q = await query(
         usersCollectionRef,
-        where("videoTime", "<=", currentSecond)
+        where("videoTime", "<=", currentSecond),
+        orderBy("videoTime")
       );
 
       onSnapshot(q, (snapshot) => {
@@ -207,17 +229,13 @@ const Webinar = ({ actualUser, actualMail }) => {
     }));
   };
 
-  const fmtMSS = (s) => {
-    return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
-  };
-
   const handleVideoPlay = (e) => {
     console.log(e.target.currentTime);
   };
 
   return (
     <WebinarWrapper>
-      <img src={logo} alt="Sense Path logo" width="252px" />
+      <img src={logo} alt="Sense Path logo" width="150px" />
       <section>
         <video
           ref={video}
@@ -250,22 +268,7 @@ const Webinar = ({ actualUser, actualMail }) => {
 
             <h2>Fundadora de Sense Path</h2>
           </div>
-          <div className="box-messages">
-            {messages.map((item, i) => (
-              <div
-                key={i}
-                className={`${item.user === actualUser ? "item mine" : "item"}`}
-              >
-                <small className="name">{item.user}</small>
-                <div className="message-content">
-                  <div className="message">{item.message}</div>
-                  <small className="second">
-                    {fmtMSS(Math.trunc(item.videoTime))}
-                  </small>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Messages messages={messages} actualUser={actualUser}></Messages>
           <form>
             <textarea
               onChange={messageChange}
@@ -278,6 +281,20 @@ const Webinar = ({ actualUser, actualMail }) => {
           </form>
         </ChatWrapper>
       </section>
+      <footer>
+        <div
+          className="
+        aviso-privacidad"
+        >
+          <a
+            href="https://www.sense-path.com/SP-AvisoPrivacidad.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            AVISO DE PRIVACIDAD{" "}
+          </a>
+        </div>
+      </footer>
     </WebinarWrapper>
   );
 };

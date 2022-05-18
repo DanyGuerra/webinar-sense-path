@@ -4,8 +4,8 @@ import Webinar from "./Webinar";
 import { useState } from "react";
 
 function App() {
-  const [actualUser, setActualUser] = useState("Juan");
-  const [actualMail, setActualMail] = useState("");
+  const [actualUser, setActualUser] = useState("Juan Lopez");
+  const [actualMail, setActualMail] = useState("juanlopez@example.com");
 
   return (
     <>

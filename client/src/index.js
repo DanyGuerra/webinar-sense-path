@@ -5,9 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
   body {
     margin:0;
     padding: 0;
+    font-family: "Sen";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+
   }
   *{
     box-sizing: border-box;

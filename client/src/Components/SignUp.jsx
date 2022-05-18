@@ -54,7 +54,7 @@ const SignUp = ({ setActualUser, setActualMail }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    buttonSignUp.current.disabled = true;
+    e.target.disabled = true;
     allValidation();
     const validation = checkValidation();
     if (validation.every((el) => el === true)) {
@@ -62,8 +62,8 @@ const SignUp = ({ setActualUser, setActualMail }) => {
       createUser();
     } else {
       console.log("Validacion incorrecta");
+      buttonSignUp.current.disabled = false;
     }
-    buttonSignUp.current.disabled = false;
   };
 
   const getUsers = async () => {
@@ -79,7 +79,7 @@ const SignUp = ({ setActualUser, setActualMail }) => {
         empresa: inputs[3].value,
       });
 
-      await fetch("/", {
+      const spread = await fetch("/", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -93,9 +93,12 @@ const SignUp = ({ setActualUser, setActualMail }) => {
         }),
       });
 
-      setActualUser(inputs[0].value);
-      setActualMail(inputs[1].value);
-      buttonSignUp.current.disabled = false;
+      if (spread.ok) {
+        setActualMail(inputs[1].value);
+        setActualUser(inputs[0].value);
+      } else {
+        buttonSignUp.current.disabled = false;
+      }
     } catch (error) {
       console.error(error);
     }
