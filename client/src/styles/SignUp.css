@@ -74,15 +74,6 @@ p {
   text-align: center;
 }
 
-.left-message {
-  width: 100%;
-  text-align: center;
-}
-
-.left-message h1 {
-  font-size: 20px;
-}
-
 .formulario {
   margin: 50px 0;
 }
@@ -275,6 +266,16 @@ footer .aviso-privacidad a {
   }
   .left-message h1 {
     font-size: 40px;
+    text-align: left;
+  }
+  .left-message h2 {
+    margin: 0;
+    font-size: 24px;
+    text-align: left;
+    color: #ff6173;
+  }
+  .left-message h2 b {
+    font-weight: 800;
   }
 
   main {

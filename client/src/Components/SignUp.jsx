@@ -190,18 +190,19 @@ const SignUp = ({ setActualUser, setActualMail }) => {
               <img src={logo} alt="Sense Path logo" width="252px" />
             </div>
             <h1>
-              INTRODUCCIÓN A LA <b>EVALUACIÓN SENSORIAL</b> EBOOK GRATUITO
+              INTRODUCCIÓN A LA <b>EVALUACIÓN SENSORIAL</b> CHARLA EN VIVO
             </h1>
+            <h2>
+              <b>PATRICIA FUENTES</b>
+            </h2>
+            <h2>Fundadora de Sense Path</h2>
 
             <p className="show-desktop hidden-mobile">
-              Regístrate para descargar un exclusivo Ebook sobre como la
-              evaluación sensorial puede ayudar a tu producto. Descubre los
-              atributos personales, lo que opinan tus clientes o futuros
-              compradores, como diferenciarte de tu compentencia y mucho más.{" "}
-            </p>
-            <p className="hidden-desktop show-mobile">
-              Regístrate para descargar un exclusivo Ebook sobre como la
-              evaluación sensorial puede ayudar a tu producto.
+              Regístrate para entrar a la charla en vivo sobre como la
+              evaluación sensorial puede ayudar a tu producto. Entérate de como
+              puedes descubrir atributos personales, lo que opinan tus clientes
+              o futuros compradores, como diferenciarte de tu compentencia y
+              mucho más.
             </p>
           </div>
           <div className="formulario">
@@ -235,7 +236,7 @@ const SignUp = ({ setActualUser, setActualMail }) => {
               ))}
 
               <button type="submit" onClick={handleSubmit} ref={buttonSignUp}>
-                Registrarse
+                ENVIAR
               </button>
             </form>
           </div>
@@ -243,9 +244,10 @@ const SignUp = ({ setActualUser, setActualMail }) => {
             <img src={logo} alt="Sense Path logo" width="252px" />
           </div>
           <p className="hidden-desktop show-mobile">
-            Descubre los atributos personales, lo que opinan tus clientes o
-            futuros compradores, como diferenciarte de tu compentencia y mucho
-            más.{" "}
+            Regístrate para entrar a la charla en vivo sobre como la evaluación
+            sensorial puede ayudar a tu producto. Entérate de como puedes
+            descubrir atributos personales, lo que opinan tus clientes o futuros
+            compradores, como diferenciarte de tu compentencia y mucho más.
           </p>
         </section>
       </main>

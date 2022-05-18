@@ -27,6 +27,33 @@ const WebinarWrapper = styled.main`
     rgba(255, 97, 115, 0.1) 100.32%
   );
 
+  b {
+    font-weight: 800;
+  }
+
+  .title-header {
+    .title {
+      text-align: center;
+      color: #005cf5;
+      h2 {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        margin: 0;
+        b {
+          font-weight: 800;
+        }
+      }
+    }
+  }
+
+  .show-desktop {
+    display: block;
+  }
+  .hidden-desktop {
+    display: none;
+  }
+
   section {
     width: 90%;
     display: flex;
@@ -39,13 +66,49 @@ const WebinarWrapper = styled.main`
   }
 
   @media (max-width: 992px) {
+    background: white;
     padding: 10px 10px;
+    background: #ffffff;
+
+    section {
+      width: 90%;
+      flex-direction: column;
+
+      video {
+        width: 100%;
+      }
+    }
+    .hidden-mobile {
+      display: none;
+    }
+
+    .show-mobile {
+      display: block;
+    }
+
+    .title-header.show-mobile {
+      margin: 20px 0px;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .title.left {
+        text-align: left;
+      }
+      .title.right {
+        text-align: right;
+        color: #ff6173;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0px 0px;
     section {
       width: 100%;
       flex-direction: column;
 
       video {
-        width: 90%;
+        width: 100%;
       }
     }
   }
@@ -58,19 +121,7 @@ const ChatWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  .title {
-    text-align: center;
-    h2 {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      color: #005cf5;
-      margin: 0;
-      bold {
-        font-weight: 800;
-      }
-    }
-  }
+
   .box-messages {
     display: flex;
     flex-direction: column;
@@ -150,10 +201,13 @@ const ChatWrapper = styled.div`
   }
 
   @media (max-width: 992px) {
-    width: 50%;
+    width: 70%;
+    .box-messages {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    }
   }
   @media (max-width: 600px) {
-    width: 80%;
+    width: 90%;
   }
 `;
 
@@ -243,6 +297,26 @@ const Webinar = ({ actualUser, actualMail }) => {
   return (
     <WebinarWrapper>
       <img src={logo} alt="Sense Path logo" width="150px" />
+      <div className="title-header show-mobile">
+        <div className="title left">
+          <h2 className="hidden-desktop show-mobile">INTRODUCCIÓN A LA</h2>
+          <h2>
+            <b className="hidden-desktop show-mobile">EVALUACIÓN SENSORIAL</b>
+          </h2>
+
+          <h2 className="hidden-desktop show-mobile">CHARLA EN VIVO</h2>
+        </div>
+
+        <div className="title right">
+          <h2>
+            <b className="hidden-desktop show-mobile">PATRICIA FUENTES</b>
+          </h2>
+
+          <h2 className="hidden-desktop show-mobile">
+            Fundadora de Sense Path
+          </h2>
+        </div>
+      </div>
       <section>
         <video
           ref={video}
@@ -254,26 +328,32 @@ const Webinar = ({ actualUser, actualMail }) => {
           onChange={handleVideoPlay}
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
+            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce08488"
             type="video/ogg"
           />
         </video>
         <ChatWrapper>
-          <div className="title">
-            <h2>INTRODUCCIÓN A LA</h2>
-            <h2>
-              <b>EVALUACIÓN SENSORIAL</b>
-            </h2>
+          <div className="title-header">
+            <div className="title">
+              <h2 className="show-desktop hidden-mobile">INTRODUCCIÓN A LA</h2>
+              <h2>
+                <b className="show-desktop hidden-mobile">
+                  EVALUACIÓN SENSORIAL
+                </b>
+              </h2>
 
-            <h2>CHARLA EN VIVO</h2>
-          </div>
+              <h2 className="show-desktop hidden-mobile">CHARLA EN VIVO</h2>
+            </div>
 
-          <div className="title">
-            <h2>
-              <b>PATRICIA FUENTES</b>
-            </h2>
+            <div className="title">
+              <h2>
+                <b className="show-desktop hidden-mobile">PATRICIA FUENTES</b>
+              </h2>
 
-            <h2>Fundadora de Sense Path</h2>
+              <h2 className="show-desktop hidden-mobile">
+                Fundadora de Sense Path
+              </h2>
+            </div>
           </div>
           <Messages messages={messages} actualUser={actualUser}></Messages>
           <form>
