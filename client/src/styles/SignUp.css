@@ -51,6 +51,23 @@ p {
   display: none;
 }
 
+.left-message h1 {
+  font-size: 24px;
+  text-align: center;
+  color: #005cf5;
+}
+.left-message h2 {
+  font-size: 24px;
+  text-align: center;
+  color: #ff6173;
+  font-weight: 400;
+  margin: 0;
+}
+
+.left-message h2 b {
+  font-weight: 700;
+}
+
 .show-mobile {
   display: block;
 }
@@ -248,6 +265,17 @@ footer .aviso-privacidad a {
 }
 
 @media (min-width: 992px) {
+  .banner-text {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .banner-text h1 {
+    margin: 0;
+  }
+
+  .banner-text button {
+    margin-top: 20px;
+  }
   .main-section {
     width: 100%;
     flex-direction: row;
@@ -270,12 +298,7 @@ footer .aviso-privacidad a {
   }
   .left-message h2 {
     margin: 0;
-    font-size: 24px;
     text-align: left;
-    color: #ff6173;
-  }
-  .left-message h2 b {
-    font-weight: 800;
   }
 
   main {

@@ -58,10 +58,8 @@ const SignUp = ({ setActualUser, setActualMail }) => {
     allValidation();
     const validation = checkValidation();
     if (validation.every((el) => el === true)) {
-      console.log("Validacion correcta");
       createUser();
     } else {
-      console.log("Validacion incorrecta");
       buttonSignUp.current.disabled = false;
     }
   };
@@ -254,8 +252,8 @@ const SignUp = ({ setActualUser, setActualMail }) => {
       <footer>
         <div className="banner">
           <div className="banner-text">
+            <h1>ESTRATEGÍA SENSORIAL APLICADA A TU MARCA</h1>
             <h1>
-              ESTRATEGÍA SENSORIAL APLICADA A TU MARCA{" "}
               <b>SOMOS LA EMPRESA MEXICANA</b> DE MÁS ALTO EXPERTISE SENSORIAL
             </h1>
             <a href="https://www.sense-path.com/#topFooter" target="_blank">

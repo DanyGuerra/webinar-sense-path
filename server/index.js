@@ -59,7 +59,7 @@ app.post("/", async (req, res) => {
   });
 
   // spreadsheet id
-  const spreadsheetId = "18OU1c8WvlrTXVgJUTTl7H7Db2jhHI0Li3Npz873pkYs";
+  const spreadsheetId = "1w_1ml9h1iRpDUgir7O0wPEQU53X1TZgDBnEoufuofnc";
 
   try {
     const response = await googleSheetsInstance.spreadsheets.values.append({
