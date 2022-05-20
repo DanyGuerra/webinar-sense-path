@@ -322,14 +322,14 @@ const Webinar = ({ actualUser, actualMail }) => {
           ref={video}
           id="video"
           width="100%"
-          no-controls="true"
+          no-controls={true}
+          autoPlay={true}
           muted
-          autoPlay={"autoPlay"}
           onChange={handleVideoPlay}
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce08488"
-            type="video/ogg"
+            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
+            type="video/mp4"
           />
         </video>
         <ChatWrapper>
