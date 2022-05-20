@@ -238,6 +238,8 @@ const Webinar = ({ actualUser, actualMail }) => {
       setCurrentSecond(Number(video.current.currentTime.toFixed(2)));
     }, 1000);
 
+    video.current.volume = 1;
+
     return () => {
       clearInterval(interval);
     };
@@ -323,12 +325,11 @@ const Webinar = ({ actualUser, actualMail }) => {
           ref={video}
           id="video"
           width="100%"
-          no-controls={true}
+          controls={false}
           autoPlay={true}
-          muted
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
+            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/arctic-monkeys-hold-on-were-going-home-drake-in-the-live-lounge.mp4?alt=media&token=6367f45d-d093-49bd-9529-e96113309aff"
             type="video/mp4"
           />
         </video>
