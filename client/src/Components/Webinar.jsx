@@ -27,6 +27,10 @@ const WebinarWrapper = styled.main`
     rgba(255, 97, 115, 0.1) 100.32%
   );
 
+  * {
+    box-sizing: border-box;
+  }
+
   b {
     font-weight: 800;
   }
@@ -192,6 +196,7 @@ const ChatWrapper = styled.div`
       padding: 10px;
     }
     button {
+      box-sizing: border-box;
       margin: 0;
       font-style: normal;
       font-weight: 700;
@@ -290,10 +295,6 @@ const Webinar = ({ actualUser, actualMail }) => {
     }));
   };
 
-  const handleVideoPlay = (e) => {
-    console.log(e.target.currentTime);
-  };
-
   return (
     <WebinarWrapper>
       <img src={logo} alt="Sense Path logo" width="150px" />
@@ -325,7 +326,6 @@ const Webinar = ({ actualUser, actualMail }) => {
           no-controls={true}
           autoPlay={true}
           muted
-          onChange={handleVideoPlay}
         >
           <source
             src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/example-video.mp4?alt=media&token=e07711ac-74b2-4311-83eb-0802ce084888"
