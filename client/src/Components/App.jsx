@@ -4,7 +4,7 @@ import Webinar from "./Webinar";
 import { useState } from "react";
 
 function App() {
-  const [actualUser, setActualUser] = useState("Danny");
+  const [actualUser, setActualUser] = useState("");
   const [actualMail, setActualMail] = useState("");
 
   return (
