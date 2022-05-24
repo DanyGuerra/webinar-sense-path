@@ -262,7 +262,7 @@ const Webinar = ({ actualUser, actualMail }) => {
     };
 
     filterBySecond();
-  }, [currentSecond]);
+  }, [messages, currentSecond]);
 
   const getAllMessages = async () => {
     const q = await query(usersCollectionRef, orderBy("videoTime"));
