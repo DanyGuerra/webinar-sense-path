@@ -1,13 +1,16 @@
 import { useEffect, useRef } from "react";
 
-const Messages = ({ messages, actualUser }) => {
+const Messages = ({ messages, actualMail }) => {
   const fmtMSS = (s) => {
     return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
   };
 
   useEffect(() => {
+    const position = boxMessages.current.scrollTop;
+    const scrollHeight = boxMessages.current.scrollHeight;
+
     boxMessages.current.scrollTo({
-      top: boxMessages.current.scrollHeight,
+      top: scrollHeight,
       behavior: "smooth",
     });
   }, [messages]);
@@ -19,7 +22,7 @@ const Messages = ({ messages, actualUser }) => {
         {messages.map((item, i) => (
           <div
             key={i}
-            className={`${item.user === actualUser ? "item mine" : "item"}`}
+            className={`${item.email === actualMail ? "item mine" : "item"}`}
           >
             <small className="name">{item.user}</small>
             <div className="message-content">

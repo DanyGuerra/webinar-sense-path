@@ -1,14 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+//
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC3YbiO-MpYvCJP9ppg5NSTRP0nLZKmPyI",
-  authDomain: "video-chat-e6b0e.firebaseapp.com",
-  projectId: "video-chat-e6b0e",
-  storageBucket: "video-chat-e6b0e.appspot.com",
-  messagingSenderId: "643666471194",
-  appId: "1:643666471194:web:1f4629d748f4661559e4a3",
-  measurementId: "G-7M701C3GSS",
+  apiKey: "AIzaSyAwmN595qUOukzDcBGkjjMmFsG9B3Q-Sdg",
+  authDomain: "sense-path-webinar.firebaseapp.com",
+  projectId: "sense-path-webinar",
+  storageBucket: "sense-path-webinar.appspot.com",
+  messagingSenderId: "947965647958",
+  appId: "1:947965647958:web:0d74fbb42a7400c17baff7",
+  measurementId: "G-ZESMXD0578",
 };
 
 const app = initializeApp(firebaseConfig);

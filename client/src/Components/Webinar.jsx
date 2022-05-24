@@ -225,6 +225,7 @@ const Webinar = ({ actualUser, actualMail }) => {
   };
   const [actualMessage, setMessage] = React.useState(initialMessage);
   const [messages, setMessages] = React.useState([]);
+  const [filterMessages, setFilterMessages] = React.useState([]);
   const [currentSecond, setCurrentSecond] = React.useState(0);
 
   const usersCollectionRef = collection(db, "messages");
@@ -246,21 +247,33 @@ const Webinar = ({ actualUser, actualMail }) => {
   }, []);
 
   useEffect(() => {
-    const getMessages = async () => {
-      const q = await query(
-        usersCollectionRef,
-        where("videoTime", "<=", currentSecond),
-        orderBy("videoTime")
-      );
+    getAllMessages();
+  }, []);
 
-      onSnapshot(q, (snapshot) => {
-        const allMessages = snapshot.docs.map((doc) => ({ ...doc.data() }));
-        setMessages(allMessages);
-      });
+  useEffect(() => {
+    const filterBySecond = () => {
+      const copyAllMessages = [...messages];
+      const filter = copyAllMessages.filter(
+        (message) => message.videoTime <= currentSecond
+      );
+      if (filter.length > filterMessages.length) {
+        setFilterMessages(filter);
+      }
     };
 
-    getMessages();
+    filterBySecond();
   }, [currentSecond]);
+
+  const getAllMessages = async () => {
+    const q = await query(usersCollectionRef, orderBy("videoTime"));
+
+    onSnapshot(q, (snapshot) => {
+      const allMessages = snapshot.docs.map((doc) => ({ ...doc.data() }));
+      if (allMessages.length > messages.length) {
+        setMessages(allMessages);
+      }
+    });
+  };
 
   const sendMessage = async () => {
     try {
@@ -278,6 +291,7 @@ const Webinar = ({ actualUser, actualMail }) => {
           ...prevState,
           message: "",
         }));
+        getAllMessages();
       }
     } catch (error) {
       console.error(error);
@@ -299,7 +313,9 @@ const Webinar = ({ actualUser, actualMail }) => {
 
   return (
     <WebinarWrapper>
-      <img src={logo} alt="Sense Path logo" width="150px" />
+      <a href="https://www.sense-path.com/" target="_blank" rel="noreferrer">
+        <img src={logo} alt="Sense Path logo" width="150px" />
+      </a>
       <div className="title-header show-mobile">
         <div className="title left">
           <h2 className="hidden-desktop show-mobile">INTRODUCCIÓN A LA</h2>
@@ -327,9 +343,10 @@ const Webinar = ({ actualUser, actualMail }) => {
           width="100%"
           controls={false}
           autoPlay={true}
+          loop={false}
         >
           <source
-            src="https://firebasestorage.googleapis.com/v0/b/video-chat-e6b0e.appspot.com/o/arctic-monkeys-hold-on-were-going-home-drake-in-the-live-lounge.mp4?alt=media&token=6367f45d-d093-49bd-9529-e96113309aff"
+            src="https://firebasestorage.googleapis.com/v0/b/sense-path-webinar.appspot.com/o/SP-VidLanding-1080.mp4?alt=media&token=2151681e-4637-4d6b-ba9d-094adf4f2949"
             type="video/mp4"
           />
         </video>
@@ -356,7 +373,10 @@ const Webinar = ({ actualUser, actualMail }) => {
               </h2>
             </div>
           </div>
-          <Messages messages={messages} actualUser={actualUser}></Messages>
+          <Messages
+            messages={filterMessages}
+            actualMail={actualMail}
+          ></Messages>
           <form>
             <textarea
               onChange={messageChange}
@@ -379,7 +399,7 @@ const Webinar = ({ actualUser, actualMail }) => {
             target="_blank"
             rel="noreferrer"
           >
-            AVISO DE PRIVACIDAD{" "}
+            AVISO DE PRIVACIDAD
           </a>
         </div>
       </footer>
