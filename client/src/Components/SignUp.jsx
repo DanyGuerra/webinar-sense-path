@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, { useEffect, useRef } from "react";
 import { db } from "../firebase.config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -252,11 +251,15 @@ const SignUp = ({ setActualUser, setActualMail }) => {
       <footer>
         <div className="banner">
           <div className="banner-text">
-            <h1>ESTRATEGÍA SENSORIAL APLICADA A TU MARCA</h1>
+            <h1>ESTRATEGIA SENSORIAL APLICADA A TU MARCA</h1>
             <h1>
               <b>SOMOS LA EMPRESA MEXICANA</b> DE MÁS ALTO EXPERTISE SENSORIAL
             </h1>
-            <a href="https://www.sense-path.com/#topFooter" target="_blank">
+            <a
+              href="https://www.sense-path.com/#topFooter"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button className="secondary-button">CONTÁCTANOS</button>
             </a>
           </div>
@@ -266,6 +269,7 @@ const SignUp = ({ setActualUser, setActualMail }) => {
           <a
             href="https://www.sense-path.com/SP-AvisoPrivacidad.pdf"
             target="_blank"
+            rel="noreferrer"
           >
             AVISO DE PRIVACIDAD{" "}
           </a>
